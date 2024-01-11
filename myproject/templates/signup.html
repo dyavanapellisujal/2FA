@@ -2,6 +2,9 @@
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
+    
+    <img src="{{ qrcode_data_uri }}" alt="TOTP QR Code">
+    <p style="color: black;">{{totp_secret}}</p>
     <button type="submit">Signup</button>
     <a href="{% url 'login' %}">Already have account?</a>
 </form>
