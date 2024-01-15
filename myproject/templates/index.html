@@ -1,4 +1,4 @@
-{% if request.user.is_authenticated %}
+{% comment %} {% if request.user.is_authenticated %}
   <p>{{ request.user.username }}</p>
   <a href="{% url 'logout' %}">Logout</a>
 {% else %}
@@ -6,4 +6,45 @@
   <a href="{% url 'signup' %}">Signup</a>
 {% endif %}
 
-<h1>Welcome!</h1>
+<h1>Welcome!</h1>  {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      body{
+        background-image: url('https://wallpapercrafter.com/desktop/15913-wolf-silhouette-hills-mountains-loneliness-4k.jpg');
+        background-color: transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+</head>
+<body class="font-mono flex flex-col justify-center h-screen bg-no-repeat bg-center bg-cover ">
+    <div class="container mx-auto">
+        <div class="flex justify-center">
+          <div class="w-full max-w-sm">
+            <h1 class="text-center text-3xl font-bold text-white uppercase">Two-Factor Authenticator</h1>
+          </div>
+        </div>
+        <div class="flex justify-center pt-4 pb-6">
+            <div class="w-full max-w-xs">
+                {% if request.user.is_authenticated %}
+                    <p class="text-center text-xl text-white">Welcome, {{ request.user.username }}!</p>
+                    <a href="{% url 'logout' %}" class="block w-full px-4 py-2 mt-4 text-center text-white bg-red-700 rounded-lg hover:bg-red-600">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="block w-full px-4 py-2 mt-4 text-center text-lg shadow-2xl text-white bg-blue-500 rounded-md border-2 border-white hover:bg-blue-700">Login</a>
+                    <a href="{% url 'signup' %}" class="block w-full px-4 py-2 mt-2 text-center text-lg shadow-2xl text-white bg-green-500 rounded-md border-2 border-white  hover:bg-green-700">Signup</a>
+                {% endif %}
+            </div>
+        </div>
+       
+    </div>
+</body>
+</html>
+
